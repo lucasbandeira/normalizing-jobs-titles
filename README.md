@@ -17,8 +17,3 @@ Here's a quick overview of the `NormalizingJobsTitles` class:
 - `public void removeTitleFromDictionary(final String normalizedJobTitle, final String genericTitle)`: Removes a specific generic title from the set for the given normalized job title.
 - `public void replaceAllGenericTitles(final String normalizedJobTitle, final Set<String> genericTitles)`: Replaces all existing generic titles for a given normalized job title with a new set of titles.
 - `public Map<String, Set<String>> getJobsAndGenericTitles()`: Returns a Map of all normalized job titles and their associated sets of generic titles.
-
-## Usage
-run this command
-`java Main.java`
-
