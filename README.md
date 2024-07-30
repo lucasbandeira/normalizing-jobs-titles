@@ -1,4 +1,4 @@
-# Welcome to the Normalizing Jobs Titles Project
+# Normalizing Jobs Titles Project
 
 This project is responsible for making job titles more consistent by normalizing them and managing their generic representation.
 
