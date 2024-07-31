@@ -19,4 +19,5 @@ Here's a quick overview of the `NormalizingJobsTitles` class:
 - `public Map<String, Set<String>> getJobsAndGenericTitles()`: Returns a Map of all normalized job titles and their associated sets of generic titles.
 
 ## Test
-![image](https://github.com/user-attachments/assets/a406d1b2-8a74-48ba-8e68-78de9a919419)
+![image](https://github.com/user-attachments/assets/8022579e-47dc-4af3-964a-02fc896a3108)
+
