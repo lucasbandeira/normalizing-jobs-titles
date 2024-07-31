@@ -16,7 +16,7 @@ public class NormalizingJobsTitles {
                 .filter(normalizedJobTitle -> normalizedJobTitle.getKey().equals(genericTitle.toLowerCase(Locale.US))
                         || normalizedJobTitle.getValue().contains(genericTitle.toLowerCase(Locale.US)))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Not found a normalizing job for " + genericTitle))
+                .orElseThrow(() -> new IllegalArgumentException("Not found a normalizing job for " + genericTitle))
                 .getKey();
     }
 
@@ -32,7 +32,7 @@ public class NormalizingJobsTitles {
                 .collect(Collectors.toSet());
     }
 
-    public void addGenericsJobTitleToDictionary(final String normalizedJobTitle, final String genericTitle) {
+    public void addGenericJobTitle(final String normalizedJobTitle, final String genericTitle) {
         toValidateJobKey(normalizedJobTitle);
         toValidateGenericTitle(genericTitle);
         jobsAndGenericTitles.get(normalizedJobTitle.toLowerCase(Locale.US)).add(genericTitle.toLowerCase(Locale.US));
@@ -43,7 +43,7 @@ public class NormalizingJobsTitles {
         jobsAndGenericTitles.get(normalizedJobTitle.toLowerCase(Locale.US)).clear();
     }
 
-    public void removeTitleFromDictionary(final String normalizedJobTitle, final String genericTitle) {
+    public void removeGenericJobTitle(final String normalizedJobTitle, final String genericTitle) {
         toValidateJobKey(normalizedJobTitle);
         toValidateGenericTitle(genericTitle);
         jobsAndGenericTitles.get(normalizedJobTitle.toLowerCase(Locale.US)).remove(genericTitle.toLowerCase(Locale.US));
@@ -57,19 +57,19 @@ public class NormalizingJobsTitles {
     private void toValidateJobKey(final String normalizedJobTitle) {
         toValidateJobKeyNotEmpty(normalizedJobTitle);
         if(!jobsAndGenericTitles.containsKey(normalizedJobTitle.toLowerCase(Locale.US))) {
-            throw new RuntimeException("The job: " + normalizedJobTitle + " does not exist in the dictionary");
+            throw new IllegalArgumentException("The job: " + normalizedJobTitle + " does not exist in the dictionary");
         }
     }
 
     private void toValidateJobKeyNotEmpty(final String normalizedJobTitle) {
         if(Objects.isNull(normalizedJobTitle) || normalizedJobTitle.trim().isEmpty()) {
-            throw new RuntimeException("The job normalized cannot to be empty");
+            throw new IllegalArgumentException("The job normalized cannot to be empty");
         }
     }
 
     private void toValidateGenericTitle(final String genericTitle) {
         if(Objects.isNull(genericTitle) || genericTitle.trim().isEmpty()) {
-            throw new RuntimeException("The generic title does not to be empty");
+            throw new IllegalArgumentException("The generic title does not to be empty");
         }
     }
 

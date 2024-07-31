@@ -29,6 +29,12 @@ public class NormalizingJobsTitlesTest {
         assertEquals(normalizedTitle, resultWithGenericTitle);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testNormalizedGenericTitleThrowsException() {
+        String invalidTitle = "invalid title";
+        normalizer.normalizedGenericTitle(invalidTitle);
+    }
+
     @Test
     public void testAddJobsAndGenericTitles() {
         String normalizedJobTitle = "professor";
@@ -37,6 +43,13 @@ public class NormalizingJobsTitlesTest {
 
         assertTrue(normalizer.getJobsAndGenericTitles().get(normalizedJobTitle)
                 .containsAll(Arrays.asList("math professor", "english professor")));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddJobsAndGenericTitlesWithInvalidNormalizedJobTitle() {
+        String invalidNormalizedJobTitle = "";
+        Set<String> genericTitles = new HashSet<>(Arrays.asList("math professor", "english professor"));
+        normalizer.addJobsAndGenericTitles(invalidNormalizedJobTitle, genericTitles);
     }
 
     @Test
@@ -48,27 +61,34 @@ public class NormalizingJobsTitlesTest {
     }
 
     @Test
-    public void testRemoveTitleFromDictionary() {
+    public void testRemoveGenericJobTitle() {
         String normalizedJobTitle = "professor";
         String genericTitle = "math professor";
-        normalizer.removeTitleFromDictionary(normalizedJobTitle, genericTitle);
+        normalizer.removeGenericJobTitle(normalizedJobTitle, genericTitle);
 
         assertFalse(normalizer.getJobsAndGenericTitles().get(normalizedJobTitle)
                 .contains(genericTitle));
     }
 
     @Test
-    public void testAddGenericsJobTitleToDictionary() {
+    public void testAddGenericJobTitle() {
         String normalizedJobTitle = "professor";
         String genericTitle = "math professor";
-        normalizer.addGenericsJobTitleToDictionary(normalizedJobTitle, genericTitle);
+        normalizer.addGenericJobTitle(normalizedJobTitle, genericTitle);
 
         assertTrue(normalizer.getJobsAndGenericTitles().get(normalizedJobTitle)
                 .contains(genericTitle));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddGenericJobTitleWithInvalidGenericJobTitle() {
+        String normalizedJobTitle = "professor";
+        String genericTitle = "";
+        normalizer.addGenericJobTitle(normalizedJobTitle, genericTitle);
+    }
+
     @Test
-    public void testReplaceAllGenericTitles() {
+    public void testReplaceAllGenericTitlesWithInvalidGenericJob() {
         String normalizedJobTitle = "professor";
         Set<String> genericTitles = new HashSet<>(Arrays.asList("math professor", "portuguese professor"));
         normalizer.replaceAllGenericTitles(normalizedJobTitle, genericTitles);
