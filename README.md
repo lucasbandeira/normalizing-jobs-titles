@@ -17,7 +17,7 @@ Here's a quick overview of the `NormalizingJobsTitles` class:
 - `public void removeGenericJobTitle(final String normalizedJobTitle, final String genericTitle)`: Removes a specific generic title from the set for the given normalized job title.
 - `public void replaceAllGenericTitles(final String normalizedJobTitle, final Set<String> genericTitles)`: Replaces all existing generic titles with a new set of titles.
 - `public Map<String, Set<String>> getJobsAndGenericTitles()`: Returns a Map of all normalized job titles and their associated sets of generic titles.
-- There's a static map with some jobs and his generic titles to make the test easier. `"software engineer" -> ["java engineer", "c# engineer", "python engineer"]` and `"accountant" -> ["assistant", "chief accountant"]`
+- There's a static map with some jobs and his generic titles to make the test easier. `"software engineer" -> ["java engineer", "c# engineer", "python engineer"]` and `"accountant" -> ["assistant accountant", "chief accountant"]`
 
 
 ## Test
