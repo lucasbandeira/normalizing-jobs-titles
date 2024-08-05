@@ -8,7 +8,7 @@ public class NormalizingJobsTitles {
     private static final Map<String, Set<String>> jobsAndGenericTitles =
             Stream.of(
                     new AbstractMap.SimpleEntry<>("software engineer", new HashSet<>(Arrays.asList("java engineer", "c# engineer", "python engineer"))),
-                    new AbstractMap.SimpleEntry<>("accountant",  new HashSet<>(Arrays.asList("assistant", "chief accountant")))
+                    new AbstractMap.SimpleEntry<>("accountant",  new HashSet<>(Arrays.asList("assistant accountant", "chief accountant")))
             ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     public String normalizedGenericTitle(final String genericTitle) {
